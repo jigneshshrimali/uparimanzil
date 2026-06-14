@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B132B">
+  <title>UPRI MANZIL — The Rooftop Restro Cafe | Elevated Dining Under the Stars</title>
+  <meta name="description" content="UPRI MANZIL is a premium rooftop dining experience in Ahmedabad. Elevated cuisine, golden-hour cocktails, and starlit ambiance above the city's noise.">
+  <meta name="keywords" content="rooftop restaurant Ahmedabad, luxury dining Gujarat, rooftop cafe, fine dining Ahmedabad, Upri Manzil">
+  <!-- OG -->
+  <meta property="og:title" content="UPRI MANZIL — The Rooftop Restro Cafe">
+  <meta property="og:description" content="Elevated dining. Star-lit skies. A luxury rooftop experience above the noise.">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:locale" content="en_IN">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UPRI MANZIL — The Rooftop Restro Cafe">
+  <meta name="twitter:description" content="Elevated dining. Star-lit skies. A luxury rooftop experience.">
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Restaurant","name":"UPRI MANZIL – The Rooftop Restro Cafe","description":"Premium rooftop dining experience in Ahmedabad, Gujarat","address":{"@type":"PostalAddress","addressLocality":"Ahmedabad","addressRegion":"Gujarat","addressCountry":"IN"},"telephone":"+919876543210","openingHours":["Mo-Th 12:00-23:00","Fr-Sa 12:00-00:30","Su 12:00-22:30"],"priceRange":"₹₹₹","servesCuisine":["Indian","Continental","Asian","Italian"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"312"}}
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================================================================
+     CANVAS — THREE.JS STARFIELD
+     ================================================================ -->
+<canvas id="starfield-canvas" aria-hidden="true"></canvas>
+
+<!-- ================================================================
+     NAVIGATION
+     ================================================================ -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="UPRI MANZIL Home">
+      UPRI<em>·</em>MANZIL
+    </a>
+    <ul class="nav__links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#moments">Moments</a></li>
+      <li><a href="#menu-prev">Menu</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+    <div class="nav__actions">
+      <a href="contact.html" class="btn btn--fill nav__reserve" role="button">Book a Table</a>
+    </div>
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<nav class="nav__mobile" aria-label="Mobile navigation">
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#moments">Moments</a>
+  <a href="menu.html">Menu</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html" style="color:var(--sunset-amber)">Reserve</a>
+</nav>
+
+<!-- ================================================================
+     HERO
+     ================================================================ -->
+<section class="hero" id="hero" aria-label="Hero">
+  <div class="hero__bg">
+    <!-- Replace src with interior.jpg -->
+    <img src="interior.jpg"
+         onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#0B132B 0%,#1a1f35 50%,#0d1525 100%)'"
+         alt="UPRI MANZIL rooftop interior — warm ambient lighting"
+         fetchpriority="high">
+  </div>
+  <div class="hero__overlay"></div>
+
+  <span class="hero__side" aria-hidden="true">RAJKOT · GUJARAT · INDIA</span>
+
+  <div class="hero__content container">
+    <p class="t-label hero__label">✦ THE UPPER FLOOR ✦</p>
+    <h1 class="hero__h1">
+      <span class="line"><span class="word">Elevated</span> <span class="word">Dining.</span></span>
+      <span class="line"><span class="word">Star&#8209;Lit</span> <span class="word">Skies.</span></span>
+    </h1>
+    <p class="hero__sub">Where rooftop luxury meets culinary artistry, above the noise of the city.</p>
+    <div class="hero__ctas">
+      <a href="contact.html" class="btn btn--fill btn--lg btn--magnetic">
+        Reserve Your Evening <span class="btn__arrow">→</span>
+      </a>
+      <a href="menu.html" class="btn btn--lg btn--magnetic">
+        Explore Menu <span class="btn__arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero__card" aria-label="Quick info">
+    <p class="hero__card-label">Open Tonight</p>
+    <p class="hero__card-val">6:30PM – 2PM</p>
+    <p class="hero__card-sub">★ 4.9 · 700 Reviews</p>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <span class="hero__scroll-line"></span>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ================================================================
+     MARQUEE STRIP
+     ================================================================ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Elevated Dining</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><em>Rooftop Luxury</em></span><span class="marquee-dot"></span>
+    <span class="marquee-item">Golden Hour Cuisine</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><em>Star-Lit Skies</em></span><span class="marquee-dot"></span>
+    <span class="marquee-item">Warm Hospitality</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><em>Above The Noise</em></span><span class="marquee-dot"></span>
+    <span class="marquee-item">Culinary Artistry</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><em>Private Celebrations</em></span><span class="marquee-dot"></span>
+  </div>
+</div>
+
+<!-- ================================================================
+     ABOUT
+     ================================================================ -->
+<section class="about section" id="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about__grid">
+
+      <div class="about__images" data-reveal="left">
+        <div class="about__img-main">
+          <img src="food5.jpg"
+               onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#121826,#0d1525)'"
+               alt="UPRI MANZIL rooftop ambiance" loading="lazy">
+        </div>
+        <div class="about__img-inset">
+          <img src="interior.jpg"
+               onerror="this.style.display='none'"
+               alt="Signature dish" loading="lazy">
+        </div>
+        <div class="about__badge" aria-hidden="true">EST.<br>2024</div>
+      </div>
+
+      <div class="about__text" data-reveal="right">
+        <div class="ornament">
+          <span class="ornament__line"></span>
+          <span class="ornament__mark">✦</span>
+          <span class="ornament__line"></span>
+        </div>
+        <p class="t-label" style="margin-bottom:12px">Our Philosophy</p>
+        <div class="about__num" aria-hidden="true">01</div>
+        <h2 class="about__heading" id="about-heading">
+          The Upper Floor.<br>The Elevated Experience.
+        </h2>
+        <p class="about__body t-body">
+          "Upri Manzil" — a name that carries the spirit of elevation in every sense. 
+          We are not merely a restaurant perched above the city. We are a sanctuary 
+          where the sky becomes your ceiling, the horizon your backdrop, and every 
+          meal an act of deliberate luxury.
+        </p>
+        <p class="t-body">
+          Our philosophy is simple: bring the finest ingredients together with 
+          artisanal craft, frame them within an atmosphere of warm twilight, 
+          and let the rooftop do the rest.
+        </p>
+        <div class="about__stats">
+          <div>
+            <p class="about__stat-val" data-count="200" data-suffix="+">0+</p>
+            <p class="about__stat-lbl">Guests Nightly</p>
+          </div>
+          <div>
+            <p class="about__stat-val" data-count="4" data-suffix=".9">0</p>
+            <p class="about__stat-lbl">Star Rating</p>
+          </div>
+          <div>
+            <p class="about__stat-val" data-count="60" data-suffix="+">0+</p>
+            <p class="about__stat-lbl">Menu Items</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     SIGNATURE EXPERIENCE
+     ================================================================ -->
+<section class="signature section" id="experience" aria-labelledby="exp-heading">
+  <div class="container">
+
+    <div class="signature__intro" data-reveal>
+      <div class="ornament"><span class="ornament__line"></span><span class="ornament__mark">✦</span><span class="ornament__line"></span></div>
+      <p class="t-label" style="margin-bottom:14px">Signature Experience</p>
+      <h2 class="signature__heading" id="exp-heading">
+        The Golden Hour<br>Collection
+      </h2>
+      <p class="t-body">
+        As daylight surrenders to twilight, UPRI MANZIL transforms into something 
+        truly extraordinary. Our Golden Hour experience is a curated ritual of flavour, 
+        craft, and atmosphere.
+      </p>
+    </div>
+
+    <div class="signature__feature">
+      <div class="signature__img" data-reveal="left">
+        <img src="2.jpg"
+             onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1a1f35,#0B132B)'; this.parentElement.style.display='flex'; this.parentElement.style.alignItems='center'; this.parentElement.style.justifyContent='center'; this.parentElement.innerHTML+='<span style=font-size:5rem>🍽️</span>'"
+             alt="Signature Experience Dish" loading="lazy">
+        <div class="signature__img-label">
+          <p class="t-label" style="font-size:0.65rem">Featured</p>
+          <p style="font-family:var(--font-display);font-style:italic;font-size:1rem">Golden Hour Tasting</p>
+        </div>
+      </div>
+
+      <div class="signature__content" data-reveal="right">
+        <div class="ornament"><span class="ornament__line"></span><span class="ornament__mark">✦</span><span class="ornament__line"></span></div>
+        <p class="t-label" style="margin-bottom:14px">02 · The Experience</p>
+        <h3 class="signature__content-heading">
+          A ritual of light, flavour, and the open sky
+        </h3>
+        <p class="t-body">
+          Every evening between 6:30 PM and 8:30 PM, the rooftop reaches its peak beauty. 
+          We have designed an entire experience around this sacred window of light — 
+          welcome cocktails, a five-course tasting, and the sky doing what it does best.
+        </p>
+        <div class="signature__highlights">
+          <div class="sig-item">
+            <div class="sig-item__icon" aria-hidden="true">🥂</div>
+            <div>
+              <p class="sig-item__title">Welcome Aperitif</p>
+              <p class="sig-item__desc">House-crafted welcome cocktail and amuse-bouche on arrival</p>
+            </div>
+          </div>
+          <div class="sig-item">
+            <div class="sig-item__icon" aria-hidden="true">🍽️</div>
+            <div>
+              <p class="sig-item__title">Five-Course Tasting Menu</p>
+              <p class="sig-item__desc">Chef-curated seasonal progression from small plates to dessert</p>
+            </div>
+          </div>
+          <div class="sig-item">
+            <div class="sig-item__icon" aria-hidden="true">🍷</div>
+            <div>
+              <p class="sig-item__title">Sommelier Wine Pairing</p>
+              <p class="sig-item__desc">Expert pairings selected to elevate each course</p>
+            </div>
+          </div>
+          <div class="sig-item">
+            <div class="sig-item__icon" aria-hidden="true">🎵</div>
+            <div>
+              <p class="sig-item__title">Live Ambient Music</p>
+              <p class="sig-item__desc">Curated acoustic sessions under the open sky</p>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html" class="btn btn--gold btn--magnetic">
+          Book the Experience <span class="btn__arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================================
+     ROOFTOP MOMENTS
+     ================================================================ -->
+<section class="moments section" id="moments" aria-labelledby="moments-heading">
+  <div class="container">
+    <div class="moments__heading" data-reveal>
+      <div class="ornament"><span class="ornament__line"></span><span class="ornament__mark">✦</span><span class="ornament__line"></span></div>
+      <p class="t-label" style="margin-bottom:14px">Rooftop Moments</p>
+      <h2 class="moments__h2" id="moments-heading">
+        A Day in Three Acts
+      </h2>
+    </div>
+
+    <div class="moments__track-wrap">
+      <div class="moments__track">
+
+        <article class="moment-panel">
+          <div class="moment-panel__bg">
+            <img src="interior.jpg"
+                 onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1a2a3a,#0B132B)'"
+                 alt="Morning dining at UPRI MANZIL" loading="lazy">
+          </div>
+          <div class="moment-panel__overlay"></div>
+          <div class="moment-panel__content">
+            <p class="moment-panel__time">Act I · 12:00 PM – 3:00 PM</p>
+            <h3 class="moment-panel__h3">The Evening Session</h3>
+            <p class="moment-panel__desc">Leisurely lunches, business conversations, and specialty brews as the city hums below you.</p>
+          </div>
+        </article>
+
+        <article class="moment-panel">
+          <div class="moment-panel__bg">
+            <img src="interior2.jpg"
+                 onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#2a1a0a,#1a0f05)'"
+                 alt="Golden hour dining at UPRI MANZIL" loading="lazy">
+          </div>
+          <div class="moment-panel__overlay"></div>
+          <div class="moment-panel__content">
+            <p class="moment-panel__time">Act II · 5:00 PM – 7:30 PM</p>
+            <h3 class="moment-panel__h3">The Golden Hour</h3>
+            <p class="moment-panel__desc">Amber cocktails meet amber skies. The most photographed, most celebrated window of our evening.</p>
+          </div>
+        </article>
+
+        <article class="moment-panel">
+          <div class="moment-panel__bg">
+            <img src="interior1.jpg"
+                 onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#050a18,#0B132B)'"
+                 alt="Starlit dinner at UPRI MANZIL" loading="lazy">
+          </div>
+          <div class="moment-panel__overlay"></div>
+          <div class="moment-panel__content">
+            <p class="moment-panel__time">Act III · 7:30 PM – 11:00 PM</p>
+            <h3 class="moment-panel__h3">Starlit Dining</h3>
+            <p class="moment-panel__desc">The city lights below, the stars above, and an impeccable dinner between. Evenings made for memory.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     MENU PREVIEW
+     ================================================================ -->
+<section class="menu-prev section" id="menu-prev" aria-labelledby="menu-prev-heading">
+  <div class="container">
+    <div class="menu-prev__grid">
+
+      <div class="menu-prev__left" data-reveal="left">
+        <div class="ornament"><span class="ornament__line"></span><span class="ornament__mark">✦</span><span class="ornament__line"></span></div>
+        <p class="t-label" style="margin-bottom:14px">03 · The Menu</p>
+        <h2 class="menu-prev__h2" id="menu-prev-heading">
+          Crafted<br>with<br>Intention
+        </h2>
+        <nav class="menu-prev__cats" aria-label="Menu categories">
+          <div class="menu-cat-line" data-cat="cocktails" role="button" tabindex="0">
+            <span class="menu-cat-line__name">Signature Cocktails</span>
+            <span class="menu-cat-line__count">12 Drinks</span>
+          </div>
+          <div class="menu-cat-line" data-cat="small-plates" role="button" tabindex="0">
+            <span class="menu-cat-line__name">Small Plates</span>
+            <span class="menu-cat-line__count">8 Bites</span>
+          </div>
+          <div class="menu-cat-line" data-cat="wood-fired" role="button" tabindex="0">
+            <span class="menu-cat-line__name">Wood-Fired</span>
+            <span class="menu-cat-line__count">6 Grills</span>
+          </div>
+          <div class="menu-cat-line" data-cat="mains" role="button" tabindex="0">
+            <span class="menu-cat-line__name">Main Course</span>
+            <span class="menu-cat-line__count">14 Dishes</span>
+          </div>
+          <div class="menu-cat-line" data-cat="chinese" role="button" tabindex="0">
+            <span class="menu-cat-line__name">Chinese</span>
+            <span class="menu-cat-line__count">10 Dishes</span>
+          </div>
+          <div class="menu-cat-line" data-cat="italian" role="button" tabindex="0">
+            <span class="menu-cat-line__name">Italian</span>
+            <span class="menu-cat-line__count">8 Dishes</span>
+          </div>
+          <div class="menu-cat-line" data-cat="desserts" role="button" tabindex="0">
+            <span class="menu-cat-line__name">Desserts</span>
+            <span class="menu-cat-line__count">6 Sweets</span>
+          </div>
+          <div class="menu-cat-line" data-cat="beverages" role="button" tabindex="0">
+            <span class="menu-cat-line__name">Beverages</span>
+            <span class="menu-cat-line__count">16 Drinks</span>
+          </div>
+        </nav>
+        <div class="menu-prev__cta">
+          <a href="menu.html" class="btn btn--gold btn--magnetic">
+            View Full Menu <span class="btn__arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="menu-prev__right" data-reveal="right">
+        <div class="menu-prev__dish">
+          <img src="food1.jpg"
+               onerror="this.style.display='none'"
+               alt="Featured dish" loading="lazy">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;opacity:0.15;pointer-events:none" class="menu-prev__emoji" aria-hidden="true">🍸</div>
+          <div class="menu-prev__dish-info">
+            <p class="menu-prev__dish-name">Golden Hour Martini</p>
+            <p class="menu-prev__dish-price">₹750</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     GALLERY TEASER
+     ================================================================ -->
+<section class="gallery-teaser" id="gallery-prev" aria-labelledby="gallery-prev-heading">
+  <div class="container">
+    <div class="gallery-teaser__header">
+      <div>
+        <p class="t-label" style="margin-bottom:10px">Visual Story</p>
+        <h2 class="gallery-teaser__h2" id="gallery-prev-heading">
+          Captured<br>Moments
+        </h2>
+      </div>
+      <a href="gallery.html" class="btn btn--magnetic" style="align-self:flex-end">
+        Full Gallery <span class="btn__arrow">→</span>
+      </a>
+    </div>
+
+    <div class="gallery-mosaic" role="list">
+      <div class="gallery-mosaic__item" role="listitem" style="background:linear-gradient(135deg,#1a2030,#0B132B)">
+        <img src="interior.jpg" onerror="this.style.display='none'" alt="UPRI MANZIL ambiance" loading="lazy">
+        <div class="gallery-mosaic__cap"><span class="gallery-mosaic__cap-text">Rooftop Ambiance</span></div>
+      </div>
+      <div class="gallery-mosaic__item" role="listitem" style="background:linear-gradient(135deg,#2a1505,#1a0f05)">
+        <img src="food2.jpg" onerror="this.style.display='none'" alt="Signature dishes" loading="lazy">
+        <div class="gallery-mosaic__cap"><span class="gallery-mosaic__cap-text">Culinary Art</span></div>
+      </div>
+      <div class="gallery-mosaic__item" role="listitem" style="background:linear-gradient(135deg,#0a1525,#050a18)">
+        <img src="food3.jpg" onerror="this.style.display='none'" alt="Night atmosphere" loading="lazy">
+        <div class="gallery-mosaic__cap"><span class="gallery-mosaic__cap-text">Night Sky</span></div>
+      </div>
+      <div class="gallery-mosaic__item" role="listitem" style="background:linear-gradient(135deg,#1a0f05,#2a1505)">
+        <img src="food4.jpg" onerror="this.style.display='none'" alt="Cocktails" loading="lazy">
+        <div class="gallery-mosaic__cap"><span class="gallery-mosaic__cap-text">Signature Cocktails</span></div>
+      </div>
+      <div class="gallery-mosaic__item" role="listitem" style="background:linear-gradient(135deg,#0B132B,#1a2030);display:flex;align-items:center;justify-content:center;">
+        <div class="gallery-mosaic__overlay">
+          <a href="gallery.html" class="btn">View All Photos</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================================
+     TESTIMONIALS
+     ================================================================ -->
+<section class="testimonials section" id="testimonials" aria-labelledby="testi-heading">
+  <div class="container container--mid">
+    <div class="ornament" data-reveal><span class="ornament__line"></span><span class="ornament__mark">✦</span><span class="ornament__line"></span></div>
+    <p class="t-label" style="margin-bottom:14px;text-align:center" data-reveal>04 · Guest Stories</p>
+    <h2 class="testimonials__heading" id="testi-heading" data-reveal>
+      What Our Guests Say
+    </h2>
+
+    <div class="testimonials__slider" role="region" aria-label="Guest testimonials" aria-live="polite">
+
+      <article class="testimonial-slide active">
+        <div class="testimonial-slide__stars" aria-label="5 stars">★★★★★</div>
+        <blockquote class="testimonial-slide__quote">
+          "UPRI MANZIL changed what I thought a dinner could feel like. The views, the food, the warmth of the team — all of it was orchestrated with a perfection I rarely encounter. We will be back for our anniversary every year."
+        </blockquote>
+        <p class="testimonial-slide__author">Arjun & Priya Mehta</p>
+        <p class="testimonial-slide__role">Anniversary Celebration · Ahmedabad</p>
+      </article>
+
+      <article class="testimonial-slide">
+        <div class="testimonial-slide__stars" aria-label="5 stars">★★★★★</div>
+        <blockquote class="testimonial-slide__quote">
+          "The Golden Hour experience is unlike anything I've had in Gujarat. Five courses that told a story, paired wines that made each dish sing — all of this while the sky turned every shade of amber. Unforgettable."
+        </blockquote>
+        <p class="testimonial-slide__author">Shreya Kapoor</p>
+        <p class="testimonial-slide__role">Food Critic · Ahmedabad</p>
+      </article>
+
+      <article class="testimonial-slide">
+        <div class="testimonial-slide__stars" aria-label="5 stars">★★★★★</div>
+        <blockquote class="testimonial-slide__quote">
+          "We brought 14 colleagues for our year-end celebration. The private section was set up beautifully, the food exceeded every expectation, and the team made each person feel special. This is our go-to venue now."
+        </blockquote>
+        <p class="testimonial-slide__author">Vikram Shah</p>
+        <p class="testimonial-slide__role">Corporate Event · 14 Guests</p>
+      </article>
+
+      <article class="testimonial-slide">
+        <div class="testimonial-slide__stars" aria-label="5 stars">★★★★★</div>
+        <blockquote class="testimonial-slide__quote">
+          "I proposed at UPRI MANZIL. They had a small note on the table she didn't notice until the very end. The staff were perfectly discreet. She said yes, obviously — but honestly, even the restaurant could have convinced her."
+        </blockquote>
+        <p class="testimonial-slide__author">Karan Desai</p>
+        <p class="testimonial-slide__role">Proposal Night · Ahmedabad</p>
+      </article>
+
+    </div>
+
+    <div class="testimonials__dots" role="tablist" aria-label="Testimonial navigation">
+      <button class="testi-dot" role="tab" aria-label="Review 1"></button>
+      <button class="testi-dot" role="tab" aria-label="Review 2"></button>
+      <button class="testi-dot" role="tab" aria-label="Review 3"></button>
+      <button class="testi-dot" role="tab" aria-label="Review 4"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     RESERVATION CTA BAND
+     ================================================================ -->
+<section class="reserve-band" aria-labelledby="reserve-heading">
+  <div class="reserve-band__bg"></div>
+  <div class="container">
+    <div class="ornament" style="justify-content:center" data-reveal>
+      <span class="ornament__line" style="max-width:120px"></span>
+      <span class="ornament__mark">✦</span>
+      <span class="ornament__line" style="max-width:120px"></span>
+    </div>
+    <h2 class="reserve-band__heading" id="reserve-heading" data-reveal>
+      Your Evening<br>Awaits.
+    </h2>
+    <p class="reserve-band__sub" data-reveal>
+      Reserve your rooftop table — limited seats available each evening.
+    </p>
+    <div class="reserve-band__ctas" data-reveal>
+      <a href="contact.html" class="btn btn--fill btn--lg btn--magnetic">
+        Reserve Now <span class="btn__arrow">→</span>
+      </a>
+      <a href="https://wa.me/919876543210?text=Hello%20UPRI%20MANZIL!%20I%20would%20like%20to%20reserve%20a%20table." target="_blank" rel="noopener" class="btn btn--lg btn--magnetic">
+        WhatsApp Us <span class="btn__arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     LOCATION
+     ================================================================ -->
+<section class="location section" id="location" aria-labelledby="loc-heading">
+  <div class="container">
+    <div class="location__grid">
+
+      <div class="location__map" data-reveal="left">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.5595837716273!2d72.52711437400129!3d23.039937615682486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e85c55a97e873%3A0xb7b63d3aac7e0afe!2sUpri%20manzil%20-%20The%20Rooftop%20Restro%20Cafe!5e0!3m2!1sen!2sin!4v1781437035605!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <div class="location__info" data-reveal="right">
+        <div class="ornament"><span class="ornament__line"></span><span class="ornament__mark">✦</span><span class="ornament__line"></span></div>
+        <p class="t-label" style="margin-bottom:14px">Find Us</p>
+        <h2 class="location__h2" id="loc-heading">
+          Come Visit<br>The Upper Floor
+        </h2>
+        <div class="location__items">
+          <div class="loc-item">
+            <div class="loc-item__icon" aria-hidden="true">📍</div>
+            <div>
+              <p class="loc-item__label">Address</p>
+              <p class="loc-item__val">Upri manzil - The Rooftop Restro Cafe<br>0th Floor, Amrapali Lakeview Tower, A-1001, <br/>opp. Nexus Ahmedabad One, Vastrapur, <br/>Ahmedabad, Gujarat 380015</p>
+              <a href="https://maps.app.goo.gl/dqf5FLu65q7B4XRm8" target="_blank" rel="noopener" class="loc-item__cta" aria-label="Get directions to UPRI MANZIL">
+                Get Directions <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+          <div class="loc-item">
+            <div class="loc-item__icon" aria-hidden="true">🕐</div>
+            <div>
+              <p class="loc-item__label">Hours</p>
+              <p class="loc-item__val">
+                Mon to Sun – Thu: 6:30 PM to 2:00 AM<br>
+                Takeout : 6:30 PM to 2:00 AM
+              </p>
+            </div>
+          </div>
+          <div class="loc-item">
+            <div class="loc-item__icon" aria-hidden="true">📞</div>
+            <div>
+              <p class="loc-item__label">Reservations</p>
+              <p class="loc-item__val">
+                <a href="tel:+919876543210">+91 99099 XXXXX</a><br>
+                <a href="mailto:hello@uprimanzil.com">hello@uprimanzil.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html" class="btn btn--fill btn--magnetic location__reserve-cta">
+          Reserve a Table <span class="btn__arrow">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <p class="footer__brand-name">UPRI<em>·</em>MANZIL</p>
+        <p class="footer__brand-tagline">The Rooftop Restro Cafe · Ahmedabad, Gujarat</p>
+        <p class="t-body" style="font-size:0.85rem;margin-bottom:24px;max-width:280px">
+          Elevated dining. Star-lit skies. Where the upper floor becomes your favourite destination.
+        </p>
+        <div class="footer__socials" role="list" aria-label="Social media links">
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer__social" role="listitem" aria-label="Instagram">📷</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="footer__social" role="listitem" aria-label="Facebook">f</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer__social" role="listitem" aria-label="Twitter / X">𝕏</a>
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="footer__social" role="listitem" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Navigate</h4>
+        <ul role="list">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#experience">The Experience</a></li>
+          <li><a href="menu.html">Our Menu</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Reservations</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Experiences</h4>
+        <ul role="list">
+          <li><a href="contact.html">Golden Hour</a></li>
+          <li><a href="contact.html">Private Events</a></li>
+          <li><a href="contact.html">Celebrations</a></li>
+          <li><a href="contact.html">Corporate Dining</a></li>
+          <li><a href="contact.html">Gift Cards</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul role="list">
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li><a href="mailto:hello@uprimanzil.com">hello@uprimanzil.com</a></li>
+          <li><a href="https://wa.me/919876543210" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="#location">Ahmedabad, Gujarat</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2024 UPRI MANZIL. All rights reserved.</p>
+      <nav class="footer__legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/919876543210?text=Hello%20UPRI%20MANZIL!%20I%27d%20like%20to%20reserve%20a%20table."
+   target="_blank" rel="noopener"
+   class="wa-float"
+   aria-label="Chat on WhatsApp"
+   style="position:fixed;bottom:28px;right:28px;z-index:800;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.3s var(--ease-luxury),box-shadow 0.3s">
+  💬
+</a>
+
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
+<script src="script.js" defer></script>
+</body>
+</html>

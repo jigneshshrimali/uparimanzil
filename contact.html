@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B132B">
+  <title>Reserve — UPRI MANZIL | Book Your Table</title>
+  <meta name="description" content="Reserve your table at UPRI MANZIL, Ahmedabad's premier rooftop restro cafe. Book online, call us, or WhatsApp for same-day reservations.">
+  <meta property="og:title" content="Reserve — UPRI MANZIL | Book Your Rooftop Table">
+  <meta property="og:description" content="Reserve your rooftop dining experience at UPRI MANZIL. Limited seats each evening.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Hours table */
+    .hours-grid {
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:8px 20px;
+      font-size:0.88rem;
+    }
+    .hours-day { color:var(--muted-text); }
+    .hours-time { color:var(--star-ivory); }
+    .hours-time--open { color:var(--sunset-amber); }
+
+    /* Call buttons */
+    .call-btns { display:flex; flex-direction:column; gap:10px; margin-top:12px; }
+    .call-btn {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 18px;
+      border:1px solid var(--soft-border);
+      border-radius:2px;
+      color:var(--star-ivory);
+      font-size:1rem;
+      font-weight:600;
+      transition:border-color 0.3s,background 0.3s;
+      cursor:pointer;
+      text-decoration:none;
+    }
+    .call-btn:hover { border-color:var(--sunset-amber); background:var(--amber-glow); color:var(--star-ivory); }
+    .call-btn__icon { font-size:1.2rem; flex-shrink:0; }
+
+    /* Form success state */
+    .form-success {
+      display:none;
+      text-align:center;
+      padding:40px;
+    }
+    .form-success h3 {
+      font-family:var(--font-display);
+      font-size:2rem;
+      font-style:italic;
+      color:var(--sunset-amber);
+      margin-bottom:12px;
+    }
+
+    /* Progress steps */
+    .form-steps {
+      display:flex;
+      gap:6px;
+      margin-bottom:28px;
+    }
+    .form-step {
+      flex:1;
+      height:2px;
+      background:var(--soft-border);
+      border-radius:1px;
+      transition:background 0.4s;
+    }
+    .form-step.active { background:var(--sunset-amber); }
+
+    /* Social links row */
+    .social-row { display:flex; gap:10px; margin-top:12px; }
+    .social-link {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:40px; height:40px;
+      border:1px solid var(--soft-border);
+      border-radius:2px;
+      color:var(--muted-text);
+      transition:border-color 0.3s,color 0.3s;
+      font-size:0.9rem;
+    }
+    .social-link:hover { border-color:var(--sunset-amber); color:var(--sunset-amber); }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield-canvas" aria-hidden="true"></canvas>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">UPRI<em>·</em>MANZIL</a>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="nav__actions">
+      <a href="#reservation-form" class="btn btn--fill nav__reserve">Reserve Now</a>
+    </div>
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav__mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="index.html#experience">Experience</a>
+  <a href="menu.html">Menu</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html" style="color:var(--sunset-amber)">Reserve</a>
+</nav>
+
+<!-- HERO -->
+<header class="contact-hero" aria-labelledby="contact-h1">
+  <div class="contact-hero__content container">
+    <div class="ornament" style="justify-content:center;margin-bottom:20px">
+      <span class="ornament__line" style="max-width:80px"></span>
+      <span class="ornament__mark">✦</span>
+      <span class="ornament__line" style="max-width:80px"></span>
+    </div>
+    <p class="t-label" style="margin-bottom:14px">Reservations</p>
+    <h1 class="contact-hero__h1" id="contact-h1">
+      Reserve Your<br>Evening
+    </h1>
+    <p class="contact-hero__sub t-body" style="margin-top:14px">
+      Limited tables available each evening · Book to secure your seat
+    </p>
+  </div>
+</header>
+
+<!-- ================================================================
+     MAIN CONTENT
+     ================================================================ -->
+<main>
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- ── FORM ── -->
+      <div id="reservation-form" data-reveal="left">
+        <div class="contact-form">
+
+          <!-- Progress indicator -->
+          <div class="form-steps" aria-label="Form completion progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="form-step" id="step1"></div>
+            <div class="form-step" id="step2"></div>
+            <div class="form-step" id="step3"></div>
+            <div class="form-step" id="step4"></div>
+          </div>
+
+          <h2 class="contact-form__heading">Reservation Details</h2>
+          <p class="t-body" style="font-size:0.88rem;margin-bottom:28px">
+            Complete all fields and we will confirm your booking within 2 hours.
+          </p>
+
+          <form id="resForm" novalidate autocomplete="on">
+
+            <!-- Row 1: Name + Email -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name <span aria-hidden="true" style="color:var(--crimson-glow)">*</span></label>
+                <input type="text" id="name" name="name"
+                       placeholder="Your full name"
+                       autocomplete="name"
+                       required
+                       aria-required="true">
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address <span aria-hidden="true" style="color:var(--crimson-glow)">*</span></label>
+                <input type="email" id="email" name="email"
+                       placeholder="you@email.com"
+                       autocomplete="email"
+                       required
+                       aria-required="true">
+              </div>
+            </div>
+
+            <!-- Row 2: Phone + Guests -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number <span aria-hidden="true" style="color:var(--crimson-glow)">*</span></label>
+                <input type="tel" id="phone" name="phone"
+                       placeholder="+91 98765 43210"
+                       autocomplete="tel"
+                       required
+                       aria-required="true">
+              </div>
+              <div class="form-group">
+                <label for="guests">Number of Guests <span aria-hidden="true" style="color:var(--crimson-glow)">*</span></label>
+                <select id="guests" name="guests" required aria-required="true">
+                  <option value="" disabled selected>Select guests</option>
+                  <option value="1">1 Guest</option>
+                  <option value="2">2 Guests</option>
+                  <option value="3">3 Guests</option>
+                  <option value="4">4 Guests</option>
+                  <option value="5">5 Guests</option>
+                  <option value="6">6 Guests</option>
+                  <option value="7">7 Guests</option>
+                  <option value="8">8 Guests</option>
+                  <option value="9-12">9 – 12 Guests</option>
+                  <option value="13+">13+ Guests (Private Event)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Row 3: Date + Time -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="date">Date <span aria-hidden="true" style="color:var(--crimson-glow)">*</span></label>
+                <input type="date" id="date" name="date"
+                       required
+                       aria-required="true">
+              </div>
+              <div class="form-group">
+                <label for="time">Preferred Time <span aria-hidden="true" style="color:var(--crimson-glow)">*</span></label>
+                <select id="time" name="time" required aria-required="true">
+                  <option value="" disabled selected>Select time slot</option>
+                  <optgroup label="Lunch">
+                    <option value="12:00">12:00 PM</option>
+                    <option value="12:30">12:30 PM</option>
+                    <option value="13:00">1:00 PM</option>
+                    <option value="13:30">1:30 PM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="14:30">2:30 PM</option>
+                  </optgroup>
+                  <optgroup label="Golden Hour">
+                    <option value="17:00">5:00 PM</option>
+                    <option value="17:30">5:30 PM</option>
+                    <option value="18:00">6:00 PM</option>
+                    <option value="18:30">6:30 PM ✦ Golden Hour</option>
+                    <option value="19:00">7:00 PM ✦ Golden Hour</option>
+                    <option value="19:30">7:30 PM</option>
+                  </optgroup>
+                  <optgroup label="Dinner">
+                    <option value="20:00">8:00 PM</option>
+                    <option value="20:30">8:30 PM</option>
+                    <option value="21:00">9:00 PM</option>
+                    <option value="21:30">9:30 PM</option>
+                    <option value="22:00">10:00 PM</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+
+            <!-- Occasion -->
+            <div class="form-group">
+              <label for="occasion">Occasion</label>
+              <select id="occasion" name="occasion">
+                <option value="" disabled selected>Select occasion (optional)</option>
+                <option value="regular">Regular Dining</option>
+                <option value="anniversary">Anniversary</option>
+                <option value="birthday">Birthday Celebration</option>
+                <option value="proposal">Proposal</option>
+                <option value="engagement">Engagement</option>
+                <option value="corporate">Corporate Dinner</option>
+                <option value="bachelorette">Bachelorette / Bachelor</option>
+                <option value="private-event">Private Event</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <!-- Special requests -->
+            <div class="form-group">
+              <label for="notes">Special Requests</label>
+              <textarea id="notes" name="notes"
+                        placeholder="Dietary restrictions, seating preferences, décor requests, allergies, or anything else we should know…"
+                        rows="4"></textarea>
+            </div>
+
+            <!-- Consent -->
+            <div class="form-check">
+              <input type="checkbox" id="consent" name="consent" required aria-required="true">
+              <label for="consent">
+                I agree to the <a href="#">privacy policy</a> and understand that reservations are subject to availability.
+              </label>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="form-submit" id="formSubmit">
+              CONFIRM MY RESERVATION →
+            </button>
+
+            <p style="font-size:0.75rem;color:var(--muted-text);text-align:center;margin-top:16px">
+              We confirm all bookings within 2 hours. For same-day reservations, 
+              please <a href="https://wa.me/919876543210" target="_blank" rel="noopener" style="color:var(--sunset-amber)">WhatsApp us directly</a>.
+            </p>
+
+          </form>
+
+          <!-- Success state (hidden, shown on submit) -->
+          <div class="form-success" id="formSuccess" aria-live="polite">
+            <div style="font-size:3rem;margin-bottom:16px">✦</div>
+            <h3>Table Reserved</h3>
+            <p class="t-body">
+              Thank you! We'll confirm your reservation within 2 hours via email or WhatsApp.
+            </p>
+            <p class="t-body" style="margin-top:10px">
+              We look forward to welcoming you to <em style="color:var(--sunset-amber)">UPRI MANZIL</em>.
+            </p>
+            <a href="menu.html" class="btn btn--gold btn--magnetic" style="margin-top:28px">
+              Explore Our Menu <span class="btn__arrow">→</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── INFO PANEL ── -->
+      <div class="contact-info" data-reveal="right">
+
+        <!-- Map -->
+        <div class="contact-info__map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.5595837716273!2d72.52711437400129!3d23.039937615682486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e85c55a97e873%3A0xb7b63d3aac7e0afe!2sUpri%20manzil%20-%20The%20Rooftop%20Restro%20Cafe!5e0!3m2!1sen!2sin!4v1781437035605!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div> 
+        <!-- Address -->
+        <div class="info-card">
+          <p class="info-card__label">📍 Address</p>
+          <p class="info-card__val">
+            Upri manzil - The Rooftop Restro Cafe<br>0th Floor, Amrapali Lakeview Tower, A-1001,<br/> opp. Nexus Ahmedabad One, Vastrapur, <br/>Ahmedabad, Gujarat 380015</p>
+            India
+          </p>
+          <a href="https://maps.app.goo.gl/dqf5FLu65q7B4XRm8" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--sunset-amber)">
+            Get Directions <span>→</span>
+          </a>
+        </div>
+
+        <!-- Hours -->
+        <div class="info-card">
+          <p class="info-card__label">🕐 Opening Hours</p>
+          <div class="hours-grid" style="margin-top:8px">
+            <span class="hours-day">Monday – Sunday</span>
+            <span class="hours-time">6:30 PM – 2:00 AM</span>
+            <span class="hours-day">Takeout</span>
+            <span class="hours-time">6:30 PM – 2:00 AM</span>
+          </div>
+          <p style="font-size:0.75rem;color:var(--muted-text);margin-top:12px">
+            ✦ Golden Hour: 7:30 PM – 9:30 PM daily
+          </p>
+        </div>
+
+        <!-- Call CTAs -->
+        <div class="info-card">
+          <p class="info-card__label">📞 Call Us</p>
+          <div class="call-btns">
+            <a href="tel:+919876XXXXX" class="call-btn">
+              <span class="call-btn__icon">📞</span>
+              <span>+91 98765 XXXXX</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="info-card info-card--whatsapp">
+          <div class="wa-icon" aria-hidden="true">💬</div>
+          <div class="wa-text">
+            <p>WhatsApp Reservations</p>
+            <p>Same-day bookings & instant confirmation</p>
+          </div>
+        </div>
+        <div class="info-card__btn">
+          <a href="https://wa.me/9199999XXXXX?text=Hello%20UPRI%20MANZIL!%20I%27d%20like%20to%20reserve%20a%20table."
+             target="_blank" rel="noopener"
+             class="btn btn--magnetic"
+             style="width:100%;justify-content:center;background:rgba(37,211,102,0.08);border-color:rgba(37,211,102,0.4);color:#25d366">
+            Open WhatsApp Chat <span class="btn__arrow">→</span>
+          </a>
+        </div>
+
+        <!-- Email -->
+        <div class="info-card">
+          <p class="info-card__label">✉️ Email</p>
+          <p class="info-card__val">
+            <a href="mailto:hello@uprimanzil.com">hello@uprimanzil.com</a><br>
+            <a href="mailto:events@uprimanzil.com">events@uprimanzil.com</a>
+          </p>
+        </div>
+
+        <!-- Social -->
+        <div class="info-card">
+          <p class="info-card__label">Follow Us</p>
+          <div class="social-row">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">📷</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">f</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">𝕏</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-link" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /contact-layout -->
+  </div><!-- /container -->
+
+  <!-- ================================================================
+       FAQ
+       ================================================================ -->
+  <section class="faq" id="faq" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="ornament" style="justify-content:center;margin-bottom:16px" data-reveal>
+        <span class="ornament__line" style="max-width:100px"></span>
+        <span class="ornament__mark">✦</span>
+        <span class="ornament__line" style="max-width:100px"></span>
+      </div>
+      <h2 class="faq__heading" id="faq-heading" data-reveal>Frequently Asked</h2>
+
+      <div class="faq__list" role="list">
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__q" aria-expanded="false">
+            <span>What is the dress code at UPRI MANZIL?</span>
+            <span class="faq-item__arrow" aria-hidden="true">↓</span>
+          </button>
+          <div class="faq-item__a" role="region">
+            <p>We recommend smart casual to formal attire. Think linen shirts, dresses, chinos — clothes that match the elevated atmosphere. We gently decline entry to guests in beachwear, athletic clothing, or flip-flops.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__q" aria-expanded="false">
+            <span>How far in advance should I book?</span>
+            <span class="faq-item__arrow" aria-hidden="true">↓</span>
+          </button>
+          <div class="faq-item__a" role="region">
+            <p>We recommend booking 2–3 days in advance for weekday evenings, and 4–7 days ahead for Friday and Saturday dinners. For the Golden Hour slots (6:30–8:30 PM), we fill up quickly — book as early as possible. Same-day availability can be confirmed via WhatsApp.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__q" aria-expanded="false">
+            <span>Do you accommodate dietary requirements?</span>
+            <span class="faq-item__arrow" aria-hidden="true">↓</span>
+          </button>
+          <div class="faq-item__a" role="region">
+            <p>Absolutely. We accommodate vegetarian, vegan, gluten-free, Jain, and other dietary requirements. Please mention this in the Special Requests field when booking, or contact us directly. Our kitchen team will ensure your meal is crafted to suit your needs.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__q" aria-expanded="false">
+            <span>What is your cancellation policy?</span>
+            <span class="faq-item__arrow" aria-hidden="true">↓</span>
+          </button>
+          <div class="faq-item__a" role="region">
+            <p>Cancellations made 24 hours before your reservation incur no charge. Cancellations within 24 hours may attract a per-person cancellation fee. For private events with a deposit, please refer to your booking agreement. We always try to accommodate rescheduling where possible.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__q" aria-expanded="false">
+            <span>Can I host a private event or celebration?</span>
+            <span class="faq-item__arrow" aria-hidden="true">↓</span>
+          </button>
+          <div class="faq-item__a" role="region">
+            <p>Yes — our rooftop space is perfect for private birthdays, anniversaries, proposals, corporate dinners, and full buyouts. We offer customised menus, dedicated service staff, floral and décor arrangements, and live music coordination. Contact us at events@uprimanzil.com to begin planning.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__q" aria-expanded="false">
+            <span>Is parking available?</span>
+            <span class="faq-item__arrow" aria-hidden="true">↓</span>
+          </button>
+          <div class="faq-item__a" role="region">
+            <p>Complimentary valet parking is available for all dinner guests. Please let us know on arrival. Street parking is also available nearby for lunch service.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__q" aria-expanded="false">
+            <span>What happens if it rains?</span>
+            <span class="faq-item__arrow" aria-hidden="true">↓</span>
+          </button>
+          <div class="faq-item__a" role="region">
+            <p>Our rooftop is partially covered and we maintain a beautifully designed indoor overflow space with the same ambiance, lighting, and service. In severe weather conditions, we will contact you in advance to offer alternatives or reschedule.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__q" aria-expanded="false">
+            <span>Do you have a wine and spirits list?</span>
+            <span class="faq-item__arrow" aria-hidden="true">↓</span>
+          </button>
+          <div class="faq-item__a" role="region">
+            <p>We maintain a curated selection of Indian and imported wines, premium spirits, and craft cocktails. Our sommelier is available Thursday through Sunday to guide your pairing choices. The full beverage menu is available on our Menu page.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       BOTTOM CTA
+       ================================================================ -->
+  <section class="reserve-band" style="padding-block:clamp(50px,8vw,90px)">
+    <div class="reserve-band__bg"></div>
+    <div class="container" style="text-align:center">
+      <h2 class="reserve-band__heading" data-reveal>Still Deciding?</h2>
+      <p class="reserve-band__sub" data-reveal>
+        Browse our menu or gallery — then come back ready to book.
+      </p>
+      <div class="reserve-band__ctas" data-reveal>
+        <a href="menu.html" class="btn btn--magnetic">
+          Explore Menu <span class="btn__arrow">→</span>
+        </a>
+        <a href="gallery.html" class="btn btn--magnetic">
+          View Gallery <span class="btn__arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <p class="footer__brand-name">UPRI<em>·</em>MANZIL</p>
+        <p class="footer__brand-tagline">The Rooftop Restro Cafe · Ahmedabad, Gujarat</p>
+        <p class="t-body" style="font-size:0.85rem;margin-bottom:24px;max-width:280px">
+          Elevated dining. Star-lit skies. Reserve your evening above the city.
+        </p>
+        <div class="footer__socials">
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer__social" aria-label="Instagram">📷</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="footer__social" aria-label="Facebook">f</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer__social" aria-label="Twitter">𝕏</a>
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="footer__social" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#experience">Experience</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Reserve</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Reserve</h4>
+        <ul>
+          <li><a href="contact.html">Book Online</a></li>
+          <li><a href="tel:+919876543210">Call Us</a></li>
+          <li><a href="https://wa.me/919876543210" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:events@uprimanzil.com">Private Events</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li><a href="mailto:hello@uprimanzil.com">hello@uprimanzil.com</a></li>
+          <li><a href="mailto:events@uprimanzil.com">events@uprimanzil.com</a></li>
+          <li><a href="index.html#location">Find Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2024 UPRI MANZIL. All rights reserved.</p>
+      <nav class="footer__legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="#">Accessibility</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919876543210?text=Hello%20UPRI%20MANZIL!%20I%27d%20like%20to%20reserve%20a%20table."
+   target="_blank" rel="noopener"
+   class="wa-float" aria-label="Chat on WhatsApp"
+   style="position:fixed;bottom:28px;right:28px;z-index:800;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.3s">
+  💬
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
+<script src="script.js" defer></script>
+
+<script>
+(function () {
+  // Set min date on date input
+  const dateInput = document.getElementById('date');
+  if (dateInput) {
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth()+1).padStart(2,'0');
+    const dd = String(today.getDate()).padStart(2,'0');
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
+  }
+
+  // Progress steps
+  const stepFields = [
+    ['name','email'],
+    ['phone','guests'],
+    ['date','time'],
+    ['consent']
+  ];
+  const stepEls = ['step1','step2','step3','step4'].map(id => document.getElementById(id));
+
+  function updateSteps() {
+    stepFields.forEach((fields, i) => {
+      const allFilled = fields.every(id => {
+        const el = document.getElementById(id);
+        if (!el) return false;
+        if (el.type === 'checkbox') return el.checked;
+        return el.value.trim() !== '';
+      });
+      if (stepEls[i]) stepEls[i].classList.toggle('active', allFilled);
+    });
+  }
+
+  document.getElementById('resForm')?.querySelectorAll('input,select,textarea').forEach(el => {
+    el.addEventListener('change', updateSteps);
+    el.addEventListener('input', updateSteps);
+  });
+
+  // Form submit
+  const form = document.getElementById('resForm');
+  const success = document.getElementById('formSuccess');
+  const submitBtn = document.getElementById('formSubmit');
+
+  form?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    let valid = true;
+
+    this.querySelectorAll('[required]').forEach(field => {
+      const isCheck = field.type === 'checkbox';
+      const isEmpty = isCheck ? !field.checked : !field.value.trim();
+      if (isEmpty) {
+        valid = false;
+        field.style.borderColor = 'var(--crimson-glow)';
+        field.addEventListener('change', () => { field.style.borderColor = ''; }, { once: true });
+        field.addEventListener('input', () => { field.style.borderColor = ''; }, { once: true });
+      }
+    });
+
+    const emailEl = document.getElementById('email');
+    if (emailEl && emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+      valid = false;
+      emailEl.style.borderColor = 'var(--crimson-glow)';
+    }
+
+    if (!valid) {
+      const firstError = form.querySelector('[style*="crimson"]');
+      if (firstError) firstError.focus();
+      return;
+    }
+
+    // Build WhatsApp message
+    const vals = {
+      name:     document.getElementById('name')?.value || '',
+      email:    document.getElementById('email')?.value || '',
+      phone:    document.getElementById('phone')?.value || '',
+      guests:   document.getElementById('guests')?.value || '',
+      date:     document.getElementById('date')?.value || '',
+      time:     document.getElementById('time')?.value || '',
+      occasion: document.getElementById('occasion')?.value || 'Not specified',
+      notes:    document.getElementById('notes')?.value || '',
+    };
+
+    const msg = encodeURIComponent(
+      `✦ UPRI MANZIL Reservation Request\n\n` +
+      `Name: ${vals.name}\nEmail: ${vals.email}\nPhone: ${vals.phone}\n` +
+      `Guests: ${vals.guests}\nDate: ${vals.date}\nTime: ${vals.time}\n` +
+      `Occasion: ${vals.occasion}\n` +
+      (vals.notes ? `Notes: ${vals.notes}` : '')
+    );
+
+    // Show loading state
+    if (submitBtn) {
+      submitBtn.textContent = 'Confirming…';
+      submitBtn.disabled = true;
+    }
+
+    setTimeout(() => {
+      // Show success
+      form.style.display = 'none';
+      if (success) success.style.display = 'block';
+
+      // Open WhatsApp
+      window.open(`https://wa.me/919876543210?text=${msg}`, '_blank');
+
+      // Mark all steps active
+      stepEls.forEach(s => s && s.classList.add('active'));
+    }, 700);
+  });
+})();
+</script>
+</body>
+</html>
