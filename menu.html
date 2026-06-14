@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B132B">
+  <title>Menu — UPRI MANZIL | Crafted with Intention</title>
+  <meta name="description" content="Explore UPRI MANZIL's curated menu — signature cocktails, wood-fired mains, small plates, Chinese, Italian, desserts and more. Premium rooftop dining in Ahmedabad.">
+  <meta property="og:title" content="Menu — UPRI MANZIL | Crafted with Intention">
+  <meta property="og:description" content="Signature cocktails, wood-fired mains, small plates and more. Fine rooftop dining in Ahmedabad.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Menu","name":"UPRI MANZIL Menu","description":"Premium rooftop dining menu","hasMenuSection":[{"@type":"MenuSection","name":"Signature Cocktails"},{"@type":"MenuSection","name":"Small Plates"},{"@type":"MenuSection","name":"Wood-Fired"},{"@type":"MenuSection","name":"Main Course"},{"@type":"MenuSection","name":"Chinese"},{"@type":"MenuSection","name":"Italian"},{"@type":"MenuSection","name":"Desserts"},{"@type":"MenuSection","name":"Beverages"}]}
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .menu-page { padding-top:0; }
+    .menu-section { padding-block: clamp(40px,6vw,70px); }
+    .menu-section + .menu-section { padding-top:0; }
+    .menu-no-results {
+      text-align:center;
+      padding:60px 20px;
+      display:none;
+    }
+    .menu-no-results p {
+      font-family:var(--font-display);
+      font-size:1.4rem;
+      font-style:italic;
+      color:var(--muted-text);
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield-canvas" aria-hidden="true"></canvas>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="UPRI MANZIL Home">UPRI<em>·</em>MANZIL</a>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__actions">
+      <a href="contact.html" class="btn btn--fill nav__reserve">Book a Table</a>
+    </div>
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav__mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="index.html#experience">Experience</a>
+  <a href="menu.html">Menu</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html" style="color:var(--sunset-amber)">Reserve</a>
+</nav>
+
+<!-- HERO -->
+<header class="menu-page-hero" aria-labelledby="menu-h1">
+  <div class="menu-page-hero__bg"></div>
+  <div class="menu-page-hero__overlay"></div>
+  <div class="menu-page-hero__content container" style="text-align:center">
+    <div class="ornament" style="justify-content:center;margin-bottom:20px">
+      <span class="ornament__line" style="max-width:80px"></span>
+      <span class="ornament__mark">✦</span>
+      <span class="ornament__line" style="max-width:80px"></span>
+    </div>
+    <p class="t-label" style="margin-bottom:16px">Crafted with Intention</p>
+    <h1 class="menu-page-hero__h1" id="menu-h1">The Menu</h1>
+    <p class="menu-page-hero__sub t-body" style="margin-top:14px;font-size:1rem">
+      Seasonal ingredients · Artisanal technique · Rooftop soul
+    </p>
+  </div>
+</header>
+
+<!-- STICKY FILTERS -->
+<div class="menu-filters" role="search" aria-label="Filter menu by category">
+  <div class="menu-filters__inner">
+    <button class="filter-pill active" data-filter="all" aria-pressed="true">All Items</button>
+    <button class="filter-pill" data-filter="cocktails" aria-pressed="false">Cocktails</button>
+    <button class="filter-pill" data-filter="small-plates" aria-pressed="false">Small Plates</button>
+    <button class="filter-pill" data-filter="wood-fired" aria-pressed="false">Wood-Fired</button>
+    <button class="filter-pill" data-filter="mains" aria-pressed="false">Main Course</button>
+    <button class="filter-pill" data-filter="chinese" aria-pressed="false">Chinese</button>
+    <button class="filter-pill" data-filter="italian" aria-pressed="false">Italian</button>
+    <button class="filter-pill" data-filter="desserts" aria-pressed="false">Desserts</button>
+    <button class="filter-pill" data-filter="beverages" aria-pressed="false">Beverages</button>
+    <div class="menu-search">
+      <span class="menu-search__icon" aria-hidden="true">🔍</span>
+      <input type="search" placeholder="Search dishes…" aria-label="Search menu items">
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     MENU CONTENT
+     ================================================================ -->
+<main class="menu-page">
+  <div class="container">
+
+    <!-- NO RESULTS -->
+    <div class="menu-no-results" id="noResults" aria-live="polite">
+      <p>No dishes found. Try a different search.</p>
+    </div>
+
+    <!-- ── COCKTAILS ── -->
+    <section class="menu-section" id="sec-cocktails" aria-labelledby="cat-cocktails">
+      <h2 class="menu-section-title" id="cat-cocktails">
+        <span>🍸</span> Signature Cocktails
+      </h2>
+      <div class="menu-grid">
+
+        <article class="menu-card" data-category="cocktails">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍸</span>
+            <span class="menu-card__badge">Signature</span>
+            <span class="menu-card__dot menu-card__dot--veg" title="Vegetarian" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Golden Hour Martini</h3>
+            <p class="menu-card__desc">Premium vodka, dry vermouth, saffron infusion, and a whisper of citrus. Our most photographed drink.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹750</span>
+              <button class="menu-card__heart" aria-label="Add to favourites" title="Favourite">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="cocktails">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🌅</span>
+            <span class="menu-card__badge">Bestseller</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Sunset Elixir</h3>
+            <p class="menu-card__desc">Dark rum, orange liqueur, fresh pomegranate, aromatic bitters, and a smoked chilli rim.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹680</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="cocktails">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🌹</span>
+            <span class="menu-card__badge">New</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Rose Garden Dream</h3>
+            <p class="menu-card__desc">Premium gin, rose water, elderflower cordial, fresh lychee, crystallised violet garnish.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹720</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="cocktails">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🥂</span>
+            <span class="menu-card__badge">Sparkling</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Star-Lit Fizz</h3>
+            <p class="menu-card__desc">Prosecco, star anise syrup, black currant liqueur, edible gold flakes. For special occasions.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹820</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="cocktails">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🫖</span>
+            <span class="menu-card__badge">Non-Alcoholic</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Midnight Mocktail</h3>
+            <p class="menu-card__desc">Cold brew butterfly pea tea, lemon, coconut water, mint, activated charcoal salt rim.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹380</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="cocktails">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍋</span>
+            <span class="menu-card__badge">Seasonal</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Rooftop Paloma</h3>
+            <p class="menu-card__desc">Tequila blanco, fresh grapefruit, Tajín rim, honey syrup, sparkling water. A sun-soaked classic.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹760</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── SMALL PLATES ── -->
+    <section class="menu-section" id="sec-small-plates" aria-labelledby="cat-small">
+      <h2 class="menu-section-title" id="cat-small"><span>🥢</span> Small Plates</h2>
+      <div class="menu-grid">
+
+        <article class="menu-card" data-category="small-plates">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🧀</span>
+            <span class="menu-card__badge">Chef's Pick</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Saffron Paneer Bites</h3>
+            <p class="menu-card__desc">Crispy saffron-marinated paneer, charred scallion aioli, micro herbs, pomegranate molasses.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹450</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="small-plates">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🦐</span>
+            <span class="menu-card__badge">Bestseller</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Garlic Prawn Cups</h3>
+            <p class="menu-card__desc">King prawns in garlic-chilli butter, served in crispy wonton cups with yuzu mayo.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹580</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="small-plates">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🫒</span>
+            <span class="menu-card__badge">Vegan</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegan"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Burrata & Heritage Tomatoes</h3>
+            <p class="menu-card__desc">Vegan burrata, heirloom tomatoes, basil oil, toasted pine nuts, aged balsamic reduction.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹480</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="small-plates">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍗</span>
+            <span class="menu-card__badge">Spicy</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Crispy Chicken Lollipops</h3>
+            <p class="menu-card__desc">Four-spice chicken lollipops, sriracha glaze, sesame, spring onion confetti.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹520</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── WOOD-FIRED ── -->
+    <section class="menu-section" id="sec-wood-fired" aria-labelledby="cat-wood">
+      <h2 class="menu-section-title" id="cat-wood"><span>🔥</span> Wood-Fired</h2>
+      <div class="menu-grid">
+
+        <article class="menu-card" data-category="wood-fired">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🥩</span>
+            <span class="menu-card__badge">Signature</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Tandoori Lamb Chops</h3>
+            <p class="menu-card__desc">Frenched lamb chops, overnight yogurt-spice marinade, smoked paprika butter, mint raita.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹980</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="wood-fired">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍗</span>
+            <span class="menu-card__badge">Bestseller</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Murgh Malai Seekh</h3>
+            <p class="menu-card__desc">Chicken seekh kebabs, cream cheese, cashew paste, charcoal smoke finish, green chutney.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹680</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="wood-fired">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🌽</span>
+            <span class="menu-card__badge">Veg Special</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Tandoori Vegetable Platter</h3>
+            <p class="menu-card__desc">Seasonal vegetables — bell peppers, baby corn, zucchini, mushrooms — wood-fired with harissa.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹560</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="wood-fired">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🐟</span>
+            <span class="menu-card__badge">Chef's Pick</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Ajwain Salmon Tikka</h3>
+            <p class="menu-card__desc">Atlantic salmon fillets, ajwain-mustard marinade, charred lemon, dill yogurt, micro greens.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹880</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── MAIN COURSE ── -->
+    <section class="menu-section" id="sec-mains" aria-labelledby="cat-mains">
+      <h2 class="menu-section-title" id="cat-mains"><span>🍛</span> Main Course</h2>
+      <div class="menu-grid">
+
+        <article class="menu-card" data-category="mains">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🥩</span>
+            <span class="menu-card__badge">Premium</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Pan-Seared Wagyu Steak</h3>
+            <p class="menu-card__desc">A5 Wagyu, truffle-infused mash, seasonal asparagus, red wine jus, crispy shallots.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹1,500</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="mains">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍤</span>
+            <span class="menu-card__badge">Bestseller</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Tiger Prawn Malabar Curry</h3>
+            <p class="menu-card__desc">Plump tiger prawns in a rich Malabar coconut curry, paired with Kerala red rice and papadom.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹920</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="mains">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍲</span>
+            <span class="menu-card__badge">Veg Signature</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Kesar Paneer Kofta</h3>
+            <p class="menu-card__desc">Stuffed paneer dumplings in a saffron-cashew gravy, served with saffron rice and laccha paratha.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹680</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="mains">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🐔</span>
+            <span class="menu-card__badge">Classic</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Murgh Roganjosh</h3>
+            <p class="menu-card__desc">Kashmiri-style chicken roganjosh, bone-in pieces in aromatic spiced sauce, garlic naan.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹780</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="mains">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🐟</span>
+            <span class="menu-card__badge">Light</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Seabass en Papillote</h3>
+            <p class="menu-card__desc">Whole seabass in parchment, fennel, cherry tomato, white wine, served with herbed couscous.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹1,050</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="mains">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🌱</span>
+            <span class="menu-card__badge">Vegan</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegan"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Dal Makhani Reimagined</h3>
+            <p class="menu-card__desc">Slow-cooked black lentils, cashew cream, smoked butter substitute, crispy garlic, warm kulcha.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹560</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── CHINESE ── -->
+    <section class="menu-section" id="sec-chinese" aria-labelledby="cat-chinese">
+      <h2 class="menu-section-title" id="cat-chinese"><span>🥡</span> Chinese</h2>
+      <div class="menu-grid">
+
+        <article class="menu-card" data-category="chinese">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍜</span>
+            <span class="menu-card__badge">Bestseller</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Dragon Wok Noodles</h3>
+            <p class="menu-card__desc">Hand-pulled noodles, Szechuan chilli oil, wok-tossed chicken, bok choy, crispy garlic.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹580</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="chinese">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🥟</span>
+            <span class="menu-card__badge">Chef's Pick</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">XO Mushroom Dim Sum</h3>
+            <p class="menu-card__desc">Steamed dim sum stuffed with shiitake, oyster mushrooms, ginger, XO sauce dip.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹480</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="chinese">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍚</span>
+            <span class="menu-card__badge">Rooftop Special</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Prawn & Egg Fried Rice</h3>
+            <p class="menu-card__desc">Jasmine rice, tiger prawns, egg, XO sauce, spring onion, sesame oil, smoky wok finish.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹620</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="chinese">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🌶️</span>
+            <span class="menu-card__badge">Spicy</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Kung Pao Chicken</h3>
+            <p class="menu-card__desc">Classic Szechuan preparation, crispy chicken, roasted peanuts, dried chillies, Kung Pao sauce.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹640</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── ITALIAN ── -->
+    <section class="menu-section" id="sec-italian" aria-labelledby="cat-italian">
+      <h2 class="menu-section-title" id="cat-italian"><span>🍝</span> Italian</h2>
+      <div class="menu-grid">
+
+        <article class="menu-card" data-category="italian">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍄</span>
+            <span class="menu-card__badge">Signature</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Black Truffle Risotto</h3>
+            <p class="menu-card__desc">Carnaroli rice, Parmigiano Reggiano, black truffle oil, wild mushrooms, aged pecorino shavings.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹920</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="italian">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍝</span>
+            <span class="menu-card__badge">Classic</span>
+            <span class="menu-card__dot menu-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Lobster Tagliolini</h3>
+            <p class="menu-card__desc">House-made egg pasta, Indian rock lobster, cherry tomato confit, bottarga, chilli, parsley.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹1,200</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="italian">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍕</span>
+            <span class="menu-card__badge">Wood-Fired</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Prosciutto e Funghi Pizza</h3>
+            <p class="menu-card__desc">Thin-crust wood-fired base, fior di latte, wild mushroom duxelles, crispy prosciutto, truffle oil.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹780</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="italian">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🧆</span>
+            <span class="menu-card__badge">Veg</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Spinach & Ricotta Gnudi</h3>
+            <p class="menu-card__desc">Light ricotta dumplings, wilted spinach, sage butter, toasted pine nuts, lemon zest.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹720</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── DESSERTS ── -->
+    <section class="menu-section" id="sec-desserts" aria-labelledby="cat-desserts">
+      <h2 class="menu-section-title" id="cat-desserts"><span>🍮</span> Desserts</h2>
+      <div class="menu-grid">
+
+        <article class="menu-card" data-category="desserts">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍮</span>
+            <span class="menu-card__badge">Signature</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Saffron Panna Cotta</h3>
+            <p class="menu-card__desc">Silken saffron panna cotta, fresh berry compote, crystallised rose petals, pistachio dust.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹380</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="desserts">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍫</span>
+            <span class="menu-card__badge">Bestseller</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">70% Chocolate Lava</h3>
+            <p class="menu-card__desc">Dark couverture lava cake, warm molten centre, single-scoop Madagascar vanilla ice cream.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹420</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="desserts">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🥭</span>
+            <span class="menu-card__badge">Seasonal</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Alphonso Mango Cheesecake</h3>
+            <p class="menu-card__desc">No-bake creamy cheesecake, fresh Alphonso mango gel, edible gold leaf, crushed amaretti base.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹440</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="desserts">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍨</span>
+            <span class="menu-card__badge">Light</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Cardamom Kheer Brûlée</h3>
+            <p class="menu-card__desc">Elevated rice kheer, caramelised sugar top, saffron cream, dried rose petals, silver leaf.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹360</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── BEVERAGES ── -->
+    <section class="menu-section" id="sec-beverages" aria-labelledby="cat-beverages">
+      <h2 class="menu-section-title" id="cat-beverages"><span>☕</span> Beverages</h2>
+      <div class="menu-grid">
+
+        <article class="menu-card" data-category="beverages">
+          <div class="menu-card__img">
+            <span aria-hidden="true">☕</span>
+            <span class="menu-card__badge">Specialty</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Single Origin Pour-Over</h3>
+            <p class="menu-card__desc">Rotating single-origin beans, Chemex pour-over, tasting notes presented by your server.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹280</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="beverages">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍵</span>
+            <span class="menu-card__badge">Wellness</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Rooftop Masala Chai</h3>
+            <p class="menu-card__desc">House-blended masala tea, full-cream milk, fresh ginger, cardamom, served in a copper kulhad.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹160</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="beverages">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🍷</span>
+            <span class="menu-card__badge">Curated</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegetarian"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Wine by the Glass</h3>
+            <p class="menu-card__desc">Rotating selection — Sula Dindori Shiraz, York Chenin Blanc, and seasonal imports.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹480+</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="beverages">
+          <div class="menu-card__img">
+            <span aria-hidden="true">🧃</span>
+            <span class="menu-card__badge">Fresh</span>
+            <span class="menu-card__dot menu-card__dot--veg" aria-label="Vegan"></span>
+          </div>
+          <div class="menu-card__body">
+            <h3 class="menu-card__name">Cold-Press Juice Flight</h3>
+            <p class="menu-card__desc">Three 60ml cold-pressed juices — rotating seasonal selection. Ask your server for today's trio.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹320</span>
+              <button class="menu-card__heart" aria-label="Add to favourites">♡</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Chef's Special Banner -->
+    <div class="chef-banner" data-reveal>
+      <p class="t-label" style="margin-bottom:12px">✦ Chef's Table ✦</p>
+      <h2 class="chef-banner__h2">Ask About Our Seasonal Tasting Menu</h2>
+      <p class="t-body" style="max-width:500px;margin-inline:auto;margin-bottom:28px">
+        A five-course chef's tasting menu changes with the harvest. Available Thursday–Sunday, for the full table only.
+      </p>
+      <a href="contact.html" class="btn btn--gold btn--magnetic">Enquire Now <span class="btn__arrow">→</span></a>
+    </div>
+
+  </div><!-- /container -->
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <p class="footer__brand-name">UPRI<em>·</em>MANZIL</p>
+        <p class="footer__brand-tagline">The Rooftop Restro Cafe · Ahmedabad, Gujarat</p>
+        <p class="t-body" style="font-size:0.85rem;margin-bottom:24px;max-width:280px">
+          Elevated dining under the stars. Reserve your table and experience the difference.
+        </p>
+        <div class="footer__socials">
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer__social" aria-label="Instagram">📷</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="footer__social" aria-label="Facebook">f</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer__social" aria-label="Twitter">𝕏</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#experience">Experience</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Reserve</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#sec-cocktails">Cocktails</a></li>
+          <li><a href="#sec-small-plates">Small Plates</a></li>
+          <li><a href="#sec-wood-fired">Wood-Fired</a></li>
+          <li><a href="#sec-mains">Main Course</a></li>
+          <li><a href="#sec-desserts">Desserts</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li><a href="mailto:hello@uprimanzil.com">hello@uprimanzil.com</a></li>
+          <li><a href="https://wa.me/919876543210" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="index.html#location">Find Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2024 UPRI MANZIL. All rights reserved.</p>
+      <nav class="footer__legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919876543210?text=Hello%20UPRI%20MANZIL!" target="_blank" rel="noopener"
+   class="wa-float" aria-label="Chat on WhatsApp"
+   style="position:fixed;bottom:28px;right:28px;z-index:800;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.3s">
+  💬
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
+<script src="script.js" defer></script>
+</body>
+</html>
